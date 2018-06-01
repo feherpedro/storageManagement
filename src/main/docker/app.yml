@@ -1,0 +1,19 @@
+version: '2'
+services:
+    storagemanagement-app:
+        image: storagemanagement
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://storagemanagement-postgresql:5432/storageManagement
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=storagemanagement-elasticsearch:9300
+        ports:
+            - 7777:7777
+    storagemanagement-postgresql:
+        extends:
+            file: postgresql.yml
+            service: storagemanagement-postgresql
+    storagemanagement-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: storagemanagement-elasticsearch
