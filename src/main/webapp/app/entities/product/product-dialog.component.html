@@ -1,0 +1,83 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myProductLabel" jhiTranslate="storageManagementApp.product.home.createOrEditLabel">Create or edit a Product</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!product.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="product.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="storageManagementApp.product.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="product.name" required/>
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="storageManagementApp.product.price" for="field_price">Price</label>
+            <input type="number" class="form-control" name="price" id="field_price"
+                [(ngModel)]="product.price" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="storageManagementApp.product.quantity" for="field_quantity">Quantity</label>
+            <input type="number" class="form-control" name="quantity" id="field_quantity"
+                [(ngModel)]="product.quantity" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="storageManagementApp.product.unitOfMeasurement" for="field_unitOfMeasurement">Unit Of Measurement</label>
+            <input type="text" class="form-control" name="unitOfMeasurement" id="field_unitOfMeasurement"
+                [(ngModel)]="product.unitOfMeasurement" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="storageManagementApp.product.barcode" for="field_barcode">Barcode</label>
+            <input type="text" class="form-control" name="barcode" id="field_barcode"
+                [(ngModel)]="product.barcode" required/>
+            <div [hidden]="!(editForm.controls.barcode?.dirty && editForm.controls.barcode?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.barcode?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="storageManagementApp.product.productCategory" for="field_productCategory">Product Category</label>
+            <select class="form-control" id="field_productCategory" name="productCategory" [(ngModel)]="product.productCategoryId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="productCategoryOption.id" *ngFor="let productCategoryOption of productcategories; trackBy: trackProductCategoryById">{{productCategoryOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="storageManagementApp.product.priceCategory" for="field_priceCategory">Price Category</label>
+            <select class="form-control" id="field_priceCategory" name="priceCategory" [(ngModel)]="product.priceCategoryId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="priceCategoryOption.id" *ngFor="let priceCategoryOption of pricecategories; trackBy: trackPriceCategoryById">{{priceCategoryOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="storageManagementApp.product.status" for="field_status">Status</label>
+            <select class="form-control" id="field_status" name="status" [(ngModel)]="product.statusId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="statusOption.id" *ngFor="let statusOption of statuses; trackBy: trackStatusById">{{statusOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

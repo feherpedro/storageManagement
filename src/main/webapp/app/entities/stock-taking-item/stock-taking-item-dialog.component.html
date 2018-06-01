@@ -1,0 +1,71 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myStockTakingItemLabel" jhiTranslate="storageManagementApp.stockTakingItem.home.createOrEditLabel">Create or edit a Stock Taking Item</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!stockTakingItem.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="stockTakingItem.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="storageManagementApp.stockTakingItem.oldQuantity" for="field_oldQuantity">Old Quantity</label>
+            <input type="number" class="form-control" name="oldQuantity" id="field_oldQuantity"
+                [(ngModel)]="stockTakingItem.oldQuantity" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="storageManagementApp.stockTakingItem.newQuantity" for="field_newQuantity">New Quantity</label>
+            <input type="number" class="form-control" name="newQuantity" id="field_newQuantity"
+                [(ngModel)]="stockTakingItem.newQuantity" required/>
+            <div [hidden]="!(editForm.controls.newQuantity?.dirty && editForm.controls.newQuantity?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.newQuantity?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.newQuantity?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="storageManagementApp.stockTakingItem.difference" for="field_difference">Difference</label>
+            <input type="number" class="form-control" name="difference" id="field_difference"
+                [(ngModel)]="stockTakingItem.difference" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="storageManagementApp.stockTakingItem.stockTaking" for="field_stockTaking">Stock Taking</label>
+            <select class="form-control" id="field_stockTaking" name="stockTaking" [(ngModel)]="stockTakingItem.stockTakingId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="stockTakingOption.id" *ngFor="let stockTakingOption of stocktakings; trackBy: trackStockTakingById">{{stockTakingOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="storageManagementApp.stockTakingItem.product" for="field_product">Product</label>
+            <select class="form-control" id="field_product" name="product" [(ngModel)]="stockTakingItem.productId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="productOption.id" *ngFor="let productOption of products; trackBy: trackProductById">{{productOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="storageManagementApp.stockTakingItem.status" for="field_status">Status</label>
+            <select class="form-control" id="field_status" name="status" [(ngModel)]="stockTakingItem.statusId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="statusOption.id" *ngFor="let statusOption of statuses; trackBy: trackStatusById">{{statusOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

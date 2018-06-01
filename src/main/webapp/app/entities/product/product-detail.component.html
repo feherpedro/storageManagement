@@ -1,0 +1,60 @@
+
+<div *ngIf="product">
+    <h2><span jhiTranslate="storageManagementApp.product.detail.title">Product</span> {{product.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="storageManagementApp.product.name">Name</span></dt>
+        <dd>
+            <span>{{product.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="storageManagementApp.product.price">Price</span></dt>
+        <dd>
+            <span>{{product.price}}</span>
+        </dd>
+        <dt><span jhiTranslate="storageManagementApp.product.quantity">Quantity</span></dt>
+        <dd>
+            <span>{{product.quantity}}</span>
+        </dd>
+        <dt><span jhiTranslate="storageManagementApp.product.unitOfMeasurement">Unit Of Measurement</span></dt>
+        <dd>
+            <span>{{product.unitOfMeasurement}}</span>
+        </dd>
+        <dt><span jhiTranslate="storageManagementApp.product.barcode">Barcode</span></dt>
+        <dd>
+            <span>{{product.barcode}}</span>
+        </dd>
+        <dt><span jhiTranslate="storageManagementApp.product.productCategory">Product Category</span></dt>
+        <dd>
+            <div *ngIf="product.productCategoryId">
+                <a [routerLink]="['/product-category', product.productCategoryId]">{{product.productCategoryId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="storageManagementApp.product.priceCategory">Price Category</span></dt>
+        <dd>
+            <div *ngIf="product.priceCategoryId">
+                <a [routerLink]="['/price-category', product.priceCategoryId]">{{product.priceCategoryId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="storageManagementApp.product.status">Status</span></dt>
+        <dd>
+            <div *ngIf="product.statusId">
+                <a [routerLink]="['/status', product.statusId]">{{product.statusId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'product/'+ product.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
