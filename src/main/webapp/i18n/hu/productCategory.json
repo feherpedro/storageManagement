@@ -3,22 +3,22 @@
     "storageManagementApp": {
         "productCategory" : {
             "home": {
-                "title": "ProductCategories",
-                "createLabel": "Egy új Product Category létrehozása",
-                "createOrEditLabel": "Hozzon létre, vagy módosítson Product Categoryt",
-                "search": "Product Category keresése"
+                "title": "Termék kategóriák",
+                "createLabel": "Egy új Termék kategória létrehozása",
+                "createOrEditLabel": "Hozzon létre, vagy módosítson Termék kategóriát",
+                "search": "Termék kategória keresése"
             },
-            "created": "Egy új Product Category lett létrehozva {{ param }} azonosítóval",
-            "updated": "A Product Category módosítva lett {{ param }} azonosítóval",
-            "deleted": "A Product Category törölve lett {{ param }} azonosítóval",
+            "created": "Egy új Termék kategória lett létrehozva {{ param }} azonosítóval",
+            "updated": "A Termék kategória módosítva lett {{ param }} azonosítóval",
+            "deleted": "A Termék kategória törölve lett {{ param }} azonosítóval",
             "delete": {
-                "question": "Biztos benne, hogy törölni szeretné az Product Categoryt {{ id }} azonosítóval?"
+                "question": "Biztos benne, hogy törölni szeretné a Termék kategóriát {{ id }} azonosítóval?"
             },
             "detail": {
-                "title": "Product Category"
+                "title": "Termék kategória"
             },
-            "name": "Name",
-            "description": "Description"
+            "name": "Név",
+            "description": "Leírás"
         }
     }
 }

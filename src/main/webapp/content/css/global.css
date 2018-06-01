@@ -252,3 +252,11 @@ Social Buttons
     color: #fff;
 }
 /* jhipster-needle-css-add-main JHipster will add new css style */
+
+.raktar {
+    display: inline-block;
+    width: 347px;
+    height: 497px;
+    background: url("../images/raktar.png") no-repeat center top;
+    background-size: contain;
+}

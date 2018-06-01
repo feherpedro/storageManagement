@@ -136,5 +136,5 @@
         "emailexists": "Ezzel az email címmel már regisztráltak!",
         "idexists": "Az új {{entityName}}-nak/nek nem lehet még ID-ja"
     },
-    "footer": "Ez a lábléc."
+    "footer": "Fehér Péter, 2018"
 }

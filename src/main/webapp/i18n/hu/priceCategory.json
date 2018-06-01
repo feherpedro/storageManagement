@@ -3,22 +3,22 @@
     "storageManagementApp": {
         "priceCategory" : {
             "home": {
-                "title": "PriceCategories",
-                "createLabel": "Egy új Price Category létrehozása",
-                "createOrEditLabel": "Hozzon létre, vagy módosítson Price Categoryt",
-                "search": "Price Category keresése"
+                "title": "Ár kategóriák",
+                "createLabel": "Egy új Ár kategória létrehozása",
+                "createOrEditLabel": "Hozzon létre, vagy módosítson Ár kategóriát",
+                "search": "Ár kategória keresése"
             },
-            "created": "Egy új Price Category lett létrehozva {{ param }} azonosítóval",
-            "updated": "A Price Category módosítva lett {{ param }} azonosítóval",
-            "deleted": "A Price Category törölve lett {{ param }} azonosítóval",
+            "created": "Egy új Ár kategória lett létrehozva {{ param }} azonosítóval",
+            "updated": "A Ár kategória módosítva lett {{ param }} azonosítóval",
+            "deleted": "A Ár kategória törölve lett {{ param }} azonosítóval",
             "delete": {
-                "question": "Biztos benne, hogy törölni szeretné az Price Categoryt {{ id }} azonosítóval?"
+                "question": "Biztos benne, hogy törölni szeretné az Ár kategóriát {{ id }} azonosítóval?"
             },
             "detail": {
-                "title": "Price Category"
+                "title": "Ár kategória"
             },
-            "name": "Name",
-            "price": "Price"
+            "name": "Név",
+            "price": "Ár"
         }
     }
 }
