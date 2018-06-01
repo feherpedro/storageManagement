@@ -1,0 +1,52 @@
+
+<div *ngIf="stockTakingItem">
+    <h2><span jhiTranslate="storageManagementApp.stockTakingItem.detail.title">Stock Taking Item</span> {{stockTakingItem.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="storageManagementApp.stockTakingItem.oldQuantity">Old Quantity</span></dt>
+        <dd>
+            <span>{{stockTakingItem.oldQuantity}}</span>
+        </dd>
+        <dt><span jhiTranslate="storageManagementApp.stockTakingItem.newQuantity">New Quantity</span></dt>
+        <dd>
+            <span>{{stockTakingItem.newQuantity}}</span>
+        </dd>
+        <dt><span jhiTranslate="storageManagementApp.stockTakingItem.difference">Difference</span></dt>
+        <dd>
+            <span>{{stockTakingItem.difference}}</span>
+        </dd>
+        <dt><span jhiTranslate="storageManagementApp.stockTakingItem.stockTaking">Stock Taking</span></dt>
+        <dd>
+            <div *ngIf="stockTakingItem.stockTakingId">
+                <a [routerLink]="['/stock-taking', stockTakingItem.stockTakingId]">{{stockTakingItem.stockTakingId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="storageManagementApp.stockTakingItem.product">Product</span></dt>
+        <dd>
+            <div *ngIf="stockTakingItem.productId">
+                <a [routerLink]="['/product', stockTakingItem.productId]">{{stockTakingItem.productId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="storageManagementApp.stockTakingItem.status">Status</span></dt>
+        <dd>
+            <div *ngIf="stockTakingItem.statusId">
+                <a [routerLink]="['/status', stockTakingItem.statusId]">{{stockTakingItem.statusId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'stock-taking-item/'+ stockTakingItem.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
