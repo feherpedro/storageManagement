@@ -34,6 +34,8 @@
     "jhipsterVersion": "4.14.4",
     "packageFolder": "hu/pte/mik/bpnh16",
     "jwtSecretKey": "3c19f792d167e1ca7f8f605fdd34fc43104eee3e",
-    "jhiPrefix": "jhi"
+    "jhiPrefix": "jhi",
+    "herokuDeployType": "jar",
+    "herokuAppName": "storage-management"
   }
 }
