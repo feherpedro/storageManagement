@@ -1,0 +1,65 @@
+entity Product {
+    name String required,
+    price Double,
+    quantity Long,
+    unitOfMeasurement String,
+    barcode String required
+}
+
+entity ProductCategory {
+    name String required,
+    description String
+}
+
+entity PriceCategory {
+    name String required,
+    price Long
+}
+
+entity Status {
+    name String required,
+    code String required
+}
+
+entity OrderEntity {
+    createDate LocalDate required,
+    paymentDate LocalDate,
+    dueDate LocalDate
+}
+
+entity OrderDetail {
+    quantity Long required
+}
+
+entity StockTaking {
+    stockTakingDate LocalDate required
+}
+
+entity StockTakingDetail {
+    oldQuantity Long,
+    newQuantity Long required,
+    difference Long
+}
+
+relationship ManyToOne {
+    Product{productCategory} to ProductCategory,
+    Product{priceCategory} to PriceCategory,
+    Product{status} to Status,
+
+    OrderEntity{status} to Status,
+
+    OrderDetail{orderEntity} to OrderEntity,
+    OrderDetail{product} to Product,
+    OrderDetail{status} to Status,
+
+    StockTaking{status} to Status,
+
+    StockTakingDetail{stockTaking} to StockTaking,
+    StockTakingDetail{product} to Product,
+    StockTakingDetail{status} to Status
+}
+
+dto * with mapstruct
+paginate * with pagination
+service all with serviceImpl
+search * with elasticsearch
