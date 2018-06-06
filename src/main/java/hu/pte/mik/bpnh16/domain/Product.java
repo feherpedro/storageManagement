@@ -4,8 +4,8 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
 import java.util.Objects;
@@ -26,7 +26,7 @@ public class Product implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @NotNull
+    @NotBlank
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -39,8 +39,8 @@ public class Product implements Serializable {
     @Column(name = "unit_of_measurement")
     private String unitOfMeasurement;
 
-    @NotNull
-    @Column(name = "barcode", nullable = false)
+    @NotBlank
+    @Column(name = "barcode", nullable = false, unique = true)
     private String barcode;
 
     @ManyToOne

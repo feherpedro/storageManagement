@@ -64,6 +64,11 @@
                             <span class="fa fa-pencil"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
+                        <button type="submit" (click)="onRaktarClick(orderEntity.id)"
+                                class="btn btn-success btn-sm">
+                            <span class="fa fa-check"></span>
+                            <span class="d-none d-md-inline">Raktárba</span>
+                        </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'order-entity/'+ orderEntity.id + '/delete'} }]"
                                 replaceUrl="true"

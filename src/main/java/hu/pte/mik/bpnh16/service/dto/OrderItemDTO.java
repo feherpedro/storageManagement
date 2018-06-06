@@ -19,6 +19,7 @@ public class OrderItemDTO implements Serializable {
 
     private Long orderEntityId;
 
+    @NotNull
     private Long productId;
 
     private Long statusId;

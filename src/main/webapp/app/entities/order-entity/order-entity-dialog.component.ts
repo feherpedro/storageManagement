@@ -37,7 +37,9 @@ export class OrderEntityDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.statusService.query()
-            .subscribe((res: HttpResponse<Status[]>) => { this.statuses = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        .subscribe((res: HttpResponse<Status[]>) => {
+            this.statuses = res.body;
+        }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -105,6 +107,8 @@ export class OrderEntityPopupComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.routeSub.unsubscribe();
+        if (this.routeSub) {
+            this.routeSub.unsubscribe();
+        }
     }
 }

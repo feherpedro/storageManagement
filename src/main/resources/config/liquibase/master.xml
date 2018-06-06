@@ -13,6 +13,7 @@
     <include file="config/liquibase/changelog/20180601004650_added_entity_OrderItem.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180601004651_added_entity_StockTaking.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180601004652_added_entity_StockTakingItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180605105306_changelog.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20180601004645_added_entity_constraints_Product.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180601004649_added_entity_constraints_OrderEntity.xml" relativeToChangelogFile="false"/>

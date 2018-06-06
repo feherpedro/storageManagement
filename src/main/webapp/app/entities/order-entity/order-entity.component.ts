@@ -7,6 +7,8 @@ import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 import { OrderEntity } from './order-entity.model';
 import { OrderEntityService } from './order-entity.service';
 import { ITEMS_PER_PAGE, Principal } from '../../shared';
+import {OrderItemService} from '../order-item/order-item.service';
+import {OrderItem} from '../order-item';
 
 @Component({
     selector: 'jhi-order-entity',
@@ -16,6 +18,7 @@ export class OrderEntityComponent implements OnInit, OnDestroy {
 
 currentAccount: any;
     orderEntities: OrderEntity[];
+    orderItems: OrderItem[];
     error: any;
     success: any;
     eventSubscriber: Subscription;
@@ -32,6 +35,7 @@ currentAccount: any;
 
     constructor(
         private orderEntityService: OrderEntityService,
+        private orderItemService: OrderItemService,
         private parseLinks: JhiParseLinks,
         private jhiAlertService: JhiAlertService,
         private principal: Principal,
@@ -70,12 +74,14 @@ currentAccount: any;
                 (res: HttpErrorResponse) => this.onError(res.message)
         );
     }
+
     loadPage(page: number) {
         if (page !== this.previousPage) {
             this.previousPage = page;
             this.transition();
         }
     }
+
     transition() {
         this.router.navigate(['/order-entity'], {queryParams:
             {
@@ -97,6 +103,7 @@ currentAccount: any;
         }]);
         this.loadAll();
     }
+
     search(query) {
         if (!query) {
             return this.clear();
@@ -110,6 +117,7 @@ currentAccount: any;
         }]);
         this.loadAll();
     }
+
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
@@ -119,12 +127,19 @@ currentAccount: any;
     }
 
     ngOnDestroy() {
-        this.eventManager.destroy(this.eventSubscriber);
+        if (this.eventSubscriber) {
+            this.eventSubscriber.unsubscribe();
+            // this.eventManager.destroy(this.eventSubscriber);
+        }
+        if (this.routeData) {
+            this.routeData.unsubscribe();
+        }
     }
 
     trackId(index: number, item: OrderEntity) {
         return item.id;
     }
+
     registerChangeInOrderEntities() {
         this.eventSubscriber = this.eventManager.subscribe('orderEntityListModification', (response) => this.loadAll());
     }
@@ -144,7 +159,16 @@ currentAccount: any;
         // this.page = pagingParams.page;
         this.orderEntities = data;
     }
+
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);
+    }
+
+    private onRaktarClick(id: number) {
+        this.orderItemService.query().subscribe((res: HttpResponse<OrderItem[]>) => {
+            this.orderItems = res.body;
+            this.orderItems = this.orderItems.filter((x) => x.orderEntityId === id);
+            this.orderEntityService.placeIntoProducts(this.orderItems, id);
+        }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 }

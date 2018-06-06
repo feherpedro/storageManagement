@@ -18,7 +18,7 @@ export class OrderItemPopupService {
         this.ngbModalRef = null;
     }
 
-    open(component: Component, id?: number | any): Promise<NgbModalRef> {
+    open(component: Component, id?: number | any, parent?: number): Promise<NgbModalRef> {
         return new Promise<NgbModalRef>((resolve, reject) => {
             const isOpen = this.ngbModalRef !== null;
             if (isOpen) {
@@ -36,6 +36,8 @@ export class OrderItemPopupService {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {
                     this.ngbModalRef = this.orderItemModalRef(component, new OrderItem());
+                    this.ngbModalRef.componentInstance.parent = parent;
+                    this.ngbModalRef.componentInstance.hasOrderNumber = !!parent;
                     resolve(this.ngbModalRef);
                 }, 0);
             }

@@ -2,6 +2,8 @@ package hu.pte.mik.bpnh16.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import hu.pte.mik.bpnh16.service.OrderEntityService;
+import hu.pte.mik.bpnh16.service.OrderItemService;
+import hu.pte.mik.bpnh16.service.dto.OrderItemDTO;
 import hu.pte.mik.bpnh16.web.rest.errors.BadRequestAlertException;
 import hu.pte.mik.bpnh16.web.rest.util.HeaderUtil;
 import hu.pte.mik.bpnh16.web.rest.util.PaginationUtil;
@@ -145,4 +147,21 @@ public class OrderEntityResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    /**
+     * Update product quantities from Orders
+     * @param id the orderEntity's id
+     * @param orderItemList list of Products to be updated
+     * @return the original OrderEntity with it's status updated to done
+     * @throws URISyntaxException if the Location URI syntax is incorrect
+     */
+    @PutMapping("/order-entities/{id}/placeIntoProducts")
+    @Timed
+    public ResponseEntity<OrderEntityDTO> placeIntoProducts( @PathVariable Long id, @RequestBody List<OrderItemDTO> orderItemList)
+        throws URISyntaxException {
+        log.debug("REST request to place these order items into Products : {}", orderItemList);
+        OrderEntityDTO orderEntityDTO = orderEntityService.findOne(id);
+        orderEntityService.placeIntoProducts(orderItemList);
+//        orderEntityDTO.setStatusId(1L);
+        return updateOrderEntity(orderEntityDTO);
+    }
 }

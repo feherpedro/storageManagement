@@ -92,7 +92,7 @@
         "ribbon": {
             "dev":"Fejlesztői változat"
         },
-        "item-count": "Showing {{first}} - {{second}} of {{total}} items."
+        "item-count": "{{first}}. - {{second}}. elem a(z) {{total}} elemből"
     },
     "entity": {
         "action": {
@@ -116,7 +116,7 @@
         "validation": {
             "required": "Ez a mező kötelező.",
             "minlength": "Ez a mező legalább {{min}} karaktert kell, hogy tartalmazzon.",
-            "maxlength": "Ez a mező nem lehet hosszabb mint {{max}} karakter.",
+            "maxlength": "Ez a mező nem lehet hosszabb, mint {{max}} karakter.",
             "min": "Ennek a mezőnek a megengedett minimum értéke {{min}}.",
             "max": "Ennek a mezőnek a megengedett maximum értéke {{max}}.",
             "minbytes": "Ennek a mezőnek a megengedett minimum értéke {{min}} bytes.",

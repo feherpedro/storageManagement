@@ -46,6 +46,7 @@ const ENTITY_STATES = [
         OrderItemPopupService,
         OrderItemResolvePagingParams,
     ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    exports: [OrderItemComponent]
 })
 export class StorageManagementOrderItemModule {}

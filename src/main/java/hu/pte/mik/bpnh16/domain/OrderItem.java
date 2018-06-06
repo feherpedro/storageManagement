@@ -34,6 +34,7 @@ public class OrderItem implements Serializable {
     private OrderEntity orderEntity;
 
     @ManyToOne
+    @NotNull
     private Product product;
 
     @ManyToOne

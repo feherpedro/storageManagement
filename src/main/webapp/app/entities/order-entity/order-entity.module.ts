@@ -15,6 +15,7 @@ import {
     orderEntityPopupRoute,
     OrderEntityResolvePagingParams,
 } from './';
+import {StorageManagementOrderItemModule} from '../order-item/order-item.module';
 
 const ENTITY_STATES = [
     ...orderEntityRoute,
@@ -24,6 +25,7 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         StorageManagementSharedModule,
+        StorageManagementOrderItemModule,
         RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [

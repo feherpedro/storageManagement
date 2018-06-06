@@ -3,22 +3,22 @@
     "storageManagementApp": {
         "orderItem" : {
             "home": {
-                "title": "Rendelési elem",
-                "createLabel": "Egy új Rendelési elem létrehozása",
-                "createOrEditLabel": "Hozzon létre, vagy módosítson Rendelési elemet",
-                "search": "Rendelési elem keresése"
+                "title": "Bevételezendő tételek",
+                "createLabel": "Egy új Bevételezendő tétel létrehozása",
+                "createOrEditLabel": "Hozzon létre, vagy módosítson Bevételezendő tételt",
+                "search": "Bevételezendő tétel keresése"
             },
-            "created": "Egy új Rendelési elem lett létrehozva {{ param }} azonosítóval",
-            "updated": "A Rendelési elem módosítva lett {{ param }} azonosítóval",
-            "deleted": "A Rendelési elem törölve lett {{ param }} azonosítóval",
+            "created": "Egy új Bevételezendő tétel lett létrehozva {{ param }} azonosítóval",
+            "updated": "A Bevételezendő tétel módosítva lett {{ param }} azonosítóval",
+            "deleted": "A Bevételezendő tétel törölve lett {{ param }} azonosítóval",
             "delete": {
-                "question": "Biztos benne, hogy törölni szeretné az Rendelési elemet {{ id }} azonosítóval?"
+                "question": "Biztos benne, hogy törölni szeretné az Bevételezendő tételt {{ id }} azonosítóval?"
             },
             "detail": {
-                "title": "Rendelési elem"
+                "title": "Bevételezendő tétel"
             },
             "quantity": "Mennyiség",
-            "orderEntity": "Rendelés",
+            "orderEntity": "Bevételezés",
             "product": "Termék",
             "status": "Státusz"
         }

@@ -7,6 +7,7 @@ import { JhiDateUtils } from 'ng-jhipster';
 
 import { OrderEntity } from './order-entity.model';
 import { createRequestOption } from '../../shared';
+import {OrderItem} from '../order-item';
 
 export type EntityResponseType = HttpResponse<OrderEntity>;
 
@@ -21,6 +22,11 @@ export class OrderEntityService {
     create(orderEntity: OrderEntity): Observable<EntityResponseType> {
         const copy = this.convert(orderEntity);
         return this.http.post<OrderEntity>(this.resourceUrl, copy, { observe: 'response' })
+            .map((res: EntityResponseType) => this.convertResponse(res));
+    }
+
+    placeIntoProducts(orderItems: OrderItem[], id: number): Observable<EntityResponseType> {
+        return this.http.put<OrderEntity>(`${this.resourceUrl}/${id}/placeIntoProducts`, orderItems, { observe: 'response' })
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 

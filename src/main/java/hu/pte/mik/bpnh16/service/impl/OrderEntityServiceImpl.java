@@ -4,8 +4,13 @@ import hu.pte.mik.bpnh16.service.OrderEntityService;
 import hu.pte.mik.bpnh16.domain.OrderEntity;
 import hu.pte.mik.bpnh16.repository.OrderEntityRepository;
 import hu.pte.mik.bpnh16.repository.search.OrderEntitySearchRepository;
+import hu.pte.mik.bpnh16.service.OrderItemService;
+import hu.pte.mik.bpnh16.service.ProductService;
 import hu.pte.mik.bpnh16.service.dto.OrderEntityDTO;
+import hu.pte.mik.bpnh16.service.dto.OrderItemDTO;
+import hu.pte.mik.bpnh16.service.dto.ProductDTO;
 import hu.pte.mik.bpnh16.service.mapper.OrderEntityMapper;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -31,10 +36,16 @@ public class OrderEntityServiceImpl implements OrderEntityService {
 
     private final OrderEntitySearchRepository orderEntitySearchRepository;
 
-    public OrderEntityServiceImpl(OrderEntityRepository orderEntityRepository, OrderEntityMapper orderEntityMapper, OrderEntitySearchRepository orderEntitySearchRepository) {
+    private final ProductService productService;
+
+    public OrderEntityServiceImpl(OrderEntityRepository orderEntityRepository,
+        OrderEntityMapper orderEntityMapper,
+        OrderEntitySearchRepository orderEntitySearchRepository,
+        ProductService productService) {
         this.orderEntityRepository = orderEntityRepository;
         this.orderEntityMapper = orderEntityMapper;
         this.orderEntitySearchRepository = orderEntitySearchRepository;
+        this.productService = productService;
     }
 
     /**
@@ -106,5 +117,19 @@ public class OrderEntityServiceImpl implements OrderEntityService {
         log.debug("Request to search for a page of OrderEntities for query {}", query);
         Page<OrderEntity> result = orderEntitySearchRepository.search(queryStringQuery(query), pageable);
         return result.map(orderEntityMapper::toDto);
+    }
+
+    /**
+     * Update product quantities from Orders
+     * @param orderItemList list of Products to be updated
+     */
+    @Override
+    public void placeIntoProducts(List<OrderItemDTO> orderItemList) {
+        log.debug("Request to to place these order items into Products : {}", orderItemList);
+        for (OrderItemDTO orderItem : orderItemList) {
+            ProductDTO productDTO = productService.findOne(orderItem.getProductId());
+            productDTO.setQuantity(productDTO.getQuantity() + orderItem.getQuantity());
+            productService.save(productDTO);
+        }
     }
 }

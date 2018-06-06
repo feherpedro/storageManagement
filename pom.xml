@@ -526,7 +526,7 @@
                     <url>jdbc:postgresql://localhost:5432/storageManagement</url>
                     <defaultSchemaName></defaultSchemaName>
                     <username>storageManagement</username>
-                    <password></password>
+                    <password>storageManagement</password>
                     <referenceUrl>hibernate:spring:hu.pte.mik.bpnh16.domain?dialect=org.hibernate.dialect.PostgreSQL82Dialect&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy</referenceUrl>
                     <verbose>true</verbose>
                     <logging>debug</logging>

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy, Input} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
@@ -19,8 +19,11 @@ import { Status, StatusService } from '../status';
 })
 export class OrderItemDialogComponent implements OnInit {
 
+    @Input() parent: number;
+
     orderItem: OrderItem;
     isSaving: boolean;
+    hasOrderNumber: boolean;
 
     orderentities: OrderEntity[];
 
@@ -40,13 +43,22 @@ export class OrderItemDialogComponent implements OnInit {
     }
 
     ngOnInit() {
+        if (this.parent != null) {
+            this.orderItem.orderEntityId = this.parent;
+        }
         this.isSaving = false;
         this.orderEntityService.query()
-            .subscribe((res: HttpResponse<OrderEntity[]>) => { this.orderentities = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        .subscribe((res: HttpResponse<OrderEntity[]>) => {
+            this.orderentities = res.body;
+        }, (res: HttpErrorResponse) => this.onError(res.message));
         this.productService.query()
-            .subscribe((res: HttpResponse<Product[]>) => { this.products = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        .subscribe((res: HttpResponse<Product[]>) => {
+            this.products = res.body;
+        }, (res: HttpErrorResponse) => this.onError(res.message));
         this.statusService.query()
-            .subscribe((res: HttpResponse<Status[]>) => { this.statuses = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        .subscribe((res: HttpResponse<Status[]>) => {
+            this.statuses = res.body;
+        }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -113,15 +125,17 @@ export class OrderItemPopupComponent implements OnInit, OnDestroy {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
                 this.orderItemPopupService
-                    .open(OrderItemDialogComponent as Component, params['id']);
+                    .open(OrderItemDialogComponent as Component, params['id'], params['parent']);
             } else {
                 this.orderItemPopupService
-                    .open(OrderItemDialogComponent as Component);
+                    .open(OrderItemDialogComponent as Component, null, params['parent']);
             }
         });
     }
 
     ngOnDestroy() {
-        this.routeSub.unsubscribe();
+        if (this.routeSub) {
+            this.routeSub.unsubscribe();
+        }
     }
 }

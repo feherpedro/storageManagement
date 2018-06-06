@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span jhiTranslate="storageManagementApp.orderItem.home.title">Order Items</span>
-        <button class="btn btn-primary float-right jh-create-entity create-order-item" [routerLink]="['/', { outlets: { popup: ['order-item-new'] } }]">
+        <button class="btn btn-primary float-right jh-create-entity create-order-item" [routerLink]="['/', { outlets: { popup: ['order-item-new', orderEntity?.id ? orderEntity?.id : null] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  jhiTranslate="storageManagementApp.orderItem.home.createLabel">
             Create new Order Item
@@ -31,7 +31,7 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="quantity"><span jhiTranslate="storageManagementApp.orderItem.quantity">Quantity</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="orderEntityId"><span jhiTranslate="storageManagementApp.orderItem.orderEntity">Order Entity</span> <span class="fa fa-sort"></span></th>
+            <!--<th jhiSortBy="orderEntityId"><span jhiTranslate="storageManagementApp.orderItem.orderEntity">Order Entity</span> <span class="fa fa-sort"></span></th>-->
             <th jhiSortBy="productId"><span jhiTranslate="storageManagementApp.orderItem.product">Product</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="statusId"><span jhiTranslate="storageManagementApp.orderItem.status">Status</span> <span class="fa fa-sort"></span></th>
             <th></th>
@@ -41,11 +41,11 @@
             <tr *ngFor="let orderItem of orderItems ;trackBy: trackId">
                 <td><a [routerLink]="['../order-item', orderItem.id ]">{{orderItem.id}}</a></td>
                 <td>{{orderItem.quantity}}</td>
-                <td>
+                <!--<td>
                     <div *ngIf="orderItem.orderEntityId">
                         <a [routerLink]="['../order-entity', orderItem.orderEntityId  ]" >{{orderItem.orderEntityId}}</a>
                     </div>
-                </td>
+                </td>-->
                 <td>
                     <div *ngIf="orderItem.productId">
                         <a [routerLink]="['../product', orderItem.productId  ]" >{{orderItem.productId}}</a>

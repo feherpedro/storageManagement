@@ -59,6 +59,16 @@ export const orderItemPopupRoute: Routes = [
         outlet: 'popup'
     },
     {
+        path: 'order-item-new/:parent',
+        component: OrderItemPopupComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'storageManagementApp.orderItem.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    },
+    {
         path: 'order-item/:id/edit',
         component: OrderItemPopupComponent,
         data: {
