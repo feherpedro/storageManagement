@@ -9,6 +9,7 @@ import { OrderEntityService } from './order-entity.service';
 import { ITEMS_PER_PAGE, Principal } from '../../shared';
 import {OrderItemService} from '../order-item/order-item.service';
 import {OrderItem} from '../order-item';
+import {QueryConstants} from '../../shared/constants/query.constants';
 
 @Component({
     selector: 'jhi-order-entity',
@@ -164,11 +165,19 @@ currentAccount: any;
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    private onRaktarClick(id: number) {
+    isFinalized(statusId: number): boolean {
+        return statusId === QueryConstants.orderStatus.LEZARVA;
+    }
+
+    onRaktarClick(id: number) {
         this.orderItemService.query().subscribe((res: HttpResponse<OrderItem[]>) => {
             this.orderItems = res.body;
             this.orderItems = this.orderItems.filter((x) => x.orderEntityId === id);
-            this.orderEntityService.placeIntoProducts(this.orderItems, id);
+            this.orderEntityService.placeIntoProducts(this.orderItems, id).subscribe((response: HttpResponse<OrderEntity>) => {
+                this.jhiAlertService.success(
+                    'storageManagementApp.orderEntity.raktarbaFelveve', response.body.id, null);
+                this.eventManager.broadcast({ name: 'orderEntityListModification', content: 'OK'});
+            }, (response: HttpErrorResponse) => this.onError(response.message));
         }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 }

@@ -1,6 +1,7 @@
 package hu.pte.mik.bpnh16.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import hu.pte.mik.bpnh16.config.Constants;
 import hu.pte.mik.bpnh16.service.OrderEntityService;
 import hu.pte.mik.bpnh16.service.OrderItemService;
 import hu.pte.mik.bpnh16.service.dto.OrderItemDTO;
@@ -9,6 +10,7 @@ import hu.pte.mik.bpnh16.web.rest.util.HeaderUtil;
 import hu.pte.mik.bpnh16.web.rest.util.PaginationUtil;
 import hu.pte.mik.bpnh16.service.dto.OrderEntityDTO;
 import io.github.jhipster.web.util.ResponseUtil;
+import java.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -154,14 +156,15 @@ public class OrderEntityResource {
      * @return the original OrderEntity with it's status updated to done
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
-    @PutMapping("/order-entities/{id}/placeIntoProducts")
+    @PostMapping("/order-entities/{id}/placeIntoProducts")
     @Timed
     public ResponseEntity<OrderEntityDTO> placeIntoProducts( @PathVariable Long id, @RequestBody List<OrderItemDTO> orderItemList)
         throws URISyntaxException {
         log.debug("REST request to place these order items into Products : {}", orderItemList);
         OrderEntityDTO orderEntityDTO = orderEntityService.findOne(id);
         orderEntityService.placeIntoProducts(orderItemList);
-//        orderEntityDTO.setStatusId(1L);
+        orderEntityDTO.setStatusId(Constants.ORDER_STATUS_LEZARVA);
+        orderEntityDTO.setDueDate(LocalDate.now());
         return updateOrderEntity(orderEntityDTO);
     }
 }

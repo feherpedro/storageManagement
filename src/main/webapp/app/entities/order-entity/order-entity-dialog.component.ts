@@ -10,6 +10,7 @@ import { OrderEntity } from './order-entity.model';
 import { OrderEntityPopupService } from './order-entity-popup.service';
 import { OrderEntityService } from './order-entity.service';
 import { Status, StatusService } from '../status';
+import {QueryConstants} from '../../shared/constants/query.constants';
 
 @Component({
     selector: 'jhi-order-entity-dialog',
@@ -48,6 +49,7 @@ export class OrderEntityDialogComponent implements OnInit {
 
     save() {
         this.isSaving = true;
+        this.orderEntity.statusId = QueryConstants.orderStatus.FELDOLGOZAS_ALATT;
         if (this.orderEntity.id !== undefined) {
             this.subscribeToSaveResponse(
                 this.orderEntityService.update(this.orderEntity));

@@ -6,6 +6,7 @@ import { JhiEventManager } from 'ng-jhipster';
 
 import { OrderEntity } from './order-entity.model';
 import { OrderEntityService } from './order-entity.service';
+import {QueryConstants} from '../../shared/constants/query.constants';
 
 @Component({
     selector: 'jhi-order-entity-detail',
@@ -51,5 +52,9 @@ export class OrderEntityDetailComponent implements OnInit, OnDestroy {
             'orderEntityListModification',
             (response) => this.load(this.orderEntity.id)
         );
+    }
+
+    isFinalized(): boolean {
+        return this.orderEntity.statusId === QueryConstants.orderStatus.LEZARVA;
     }
 }

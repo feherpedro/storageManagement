@@ -26,7 +26,7 @@ export class OrderEntityService {
     }
 
     placeIntoProducts(orderItems: OrderItem[], id: number): Observable<EntityResponseType> {
-        return this.http.put<OrderEntity>(`${this.resourceUrl}/${id}/placeIntoProducts`, orderItems, { observe: 'response' })
+        return this.http.post(`${this.resourceUrl}/${id}/placeIntoProducts`, orderItems, { observe: 'response' })
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 

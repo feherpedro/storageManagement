@@ -56,7 +56,7 @@
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
-                        <button type="submit"
+                        <button *ngIf="!isFinalized(orderEntity.statusId)" type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'order-entity/'+ orderEntity.id + '/edit'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
@@ -64,7 +64,8 @@
                             <span class="fa fa-pencil"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
-                        <button type="submit" (click)="onRaktarClick(orderEntity.id)"
+                        <button *ngIf="!isFinalized(orderEntity.statusId)" type="submit"
+                                (click)="onRaktarClick(orderEntity.id)"
                                 class="btn btn-success btn-sm">
                             <span class="fa fa-check"></span>
                             <span class="d-none d-md-inline">Raktárba</span>

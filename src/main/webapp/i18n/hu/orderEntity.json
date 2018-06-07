@@ -19,8 +19,9 @@
             },
             "createDate": "Létrehozás dátuma",
             "paymentDate": "Fizetés dátuma",
-            "dueDate": "Teljesítés dátuma",
-            "status": "Státusz"
+            "dueDate": "Raktárba felvétel dátuma",
+            "status": "Státusz",
+            "raktarbaFelveve": "A bevételezés sikeresen felvéve a raktárba"
         }
     }
 }

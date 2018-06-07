@@ -38,7 +38,7 @@
                 </span>
             </div>
         </div>
-        <div class="form-group">
+        <!--<div class="form-group">
             <label class="form-control-label" jhiTranslate="storageManagementApp.orderEntity.dueDate" for="field_dueDate">Due Date</label>
             <div class="input-group">
                 <input id="field_dueDate" type="text" class="form-control" name="dueDate" ngbDatepicker  #dueDateDp="ngbDatepicker" [(ngModel)]="orderEntity.dueDate"
@@ -47,15 +47,15 @@
                     <button type="button" class="btn btn-secondary" (click)="dueDateDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>
             </div>
-        </div>
+        </div>-->
 
-        <div class="form-group">
+        <!--<div class="form-group">
             <label class="form-control-label" jhiTranslate="storageManagementApp.orderEntity.status" for="field_status">Status</label>
             <select class="form-control" id="field_status" name="status" [(ngModel)]="orderEntity.statusId" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="statusOption.id" *ngFor="let statusOption of statuses; trackBy: trackStatusById">{{statusOption.name}}</option>
             </select>
-        </div>
+        </div>-->
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
