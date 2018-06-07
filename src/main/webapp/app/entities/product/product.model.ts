@@ -11,6 +11,7 @@ export class Product implements BaseEntity {
         public productCategoryId?: number,
         public priceCategoryId?: number,
         public statusId?: number,
+        public statusName?: string,
     ) {
     }
 }

@@ -12,6 +12,7 @@ import org.mapstruct.*;
 public interface OrderEntityMapper extends EntityMapper<OrderEntityDTO, OrderEntity> {
 
     @Mapping(source = "status.id", target = "statusId")
+    @Mapping(source = "status.name", target = "statusName")
     OrderEntityDTO toDto(OrderEntity orderEntity);
 
     @Mapping(source = "statusId", target = "status")

@@ -7,6 +7,7 @@ export class OrderEntity implements BaseEntity {
         public paymentDate?: any,
         public dueDate?: any,
         public statusId?: number,
+        public statusName?: string,
     ) {
     }
 }

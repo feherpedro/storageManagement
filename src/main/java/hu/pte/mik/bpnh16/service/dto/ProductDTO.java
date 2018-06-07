@@ -32,6 +32,8 @@ public class ProductDTO implements Serializable {
 
     private Long statusId;
 
+    private String statusName;
+
     public Long getId() {
         return id;
     }
@@ -102,6 +104,14 @@ public class ProductDTO implements Serializable {
 
     public void setStatusId(Long statusId) {
         this.statusId = statusId;
+    }
+
+    public String getStatusName() {
+        return statusName;
+    }
+
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
     }
 
     @Override
