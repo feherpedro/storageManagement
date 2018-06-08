@@ -7,14 +7,14 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entitások",
-                "product": "Product",
-                "productCategory": "Product Category",
-                "priceCategory": "Price Category",
-                "status": "Status",
-                "orderEntity": "Order Entity",
-                "orderItem": "Order Item",
-                "stockTaking": "Stock Taking",
-                "stockTakingItem": "Stock Taking Item",
+                "product": "Termékek",
+                "productCategory": "Termék kategóriák",
+                "priceCategory": "Ár kategóriák",
+                "status": "Státuszok",
+                "orderEntity": "Bevételezések",
+                "orderItem": "Bevételezendő termékek",
+                "stockTaking": "Leltározások",
+                "stockTakingItem": "Leltározandó termékek",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -56,7 +56,7 @@
                 "authenticated": {
                     "prefix": "Ha be akar ",
                     "link": "lépni",
-                    "suffix": ", kipróbálás céljából használható felhasználók:<br/>- Adminisztrátor (azonosító=\"admin\" és a jelszó=\"admin\") <br/>- Felhasználó (azonosító=\"user\" és jelszó=\"user\")."
+                    "suffix": ", kipróbálás céljából használható felhasználó:<br/>- Felhasználó (azonosító=\"user\" és jelszó=\"user\")."
                 },
                 "register": {
                     "noaccount": "Nincs még hozzáférése?",
