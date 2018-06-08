@@ -1,7 +1,7 @@
 {
     "home": {
-        "title": "Szép napot!",
-        "subtitle": "Ez a nyitóképernyő",
+        "title": "Raktár nyilvántartó rendszer",
+        "subtitle": "Ez a kezdőlap",
         "logged": {
             "message": "Ön \"{{username}}\"-ként lépett be."
         },
