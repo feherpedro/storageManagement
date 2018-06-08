@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, Input} from '@angular/core';
+import {Component, OnInit, OnDestroy, Input, Output, EventEmitter} from '@angular/core';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
@@ -16,6 +16,7 @@ import {OrderEntity, OrderEntityService} from '../order-entity';
 export class OrderItemComponent implements OnInit, OnDestroy {
 
     @Input() orderEntity: OrderEntity;
+    @Output() hasItems = new EventEmitter<boolean>();
 
     currentAccount: any;
     orderItems: OrderItem[];
@@ -168,6 +169,7 @@ export class OrderItemComponent implements OnInit, OnDestroy {
         // this.page = pagingParams.page;
         this.orderItems = data;
         this.orderItems = this.orderItems.filter((x) => x.orderEntityId === this.orderEntity.id);
+        this.hasItems.emit(this.orderItems.length > 0);
     }
 
     private onError(error) {

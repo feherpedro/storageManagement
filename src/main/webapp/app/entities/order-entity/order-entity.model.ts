@@ -1,4 +1,5 @@
 import { BaseEntity } from './../../shared';
+import {OrderItem} from '../order-item/order-item.model';
 
 export class OrderEntity implements BaseEntity {
     constructor(
@@ -8,6 +9,8 @@ export class OrderEntity implements BaseEntity {
         public dueDate?: any,
         public statusId?: number,
         public statusName?: string,
+        public orderItemList?: OrderItem[]
     ) {
+        this.orderItemList = [];
     }
 }

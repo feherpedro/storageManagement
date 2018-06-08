@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
@@ -7,8 +7,7 @@ import {JhiAlertService, JhiEventManager} from 'ng-jhipster';
 import { OrderEntity } from './order-entity.model';
 import { OrderEntityService } from './order-entity.service';
 import {QueryConstants} from '../../shared/constants/query.constants';
-import {OrderItem} from '../order-item';
-import {OrderItemService} from '../order-item/order-item.service';
+import {OrderItem, OrderItemService} from '../order-item';
 
 @Component({
     selector: 'jhi-order-entity-detail',
@@ -17,9 +16,9 @@ import {OrderItemService} from '../order-item/order-item.service';
 export class OrderEntityDetailComponent implements OnInit, OnDestroy {
 
     orderEntity: OrderEntity;
-    orderItems: OrderItem[];
     private subscription: Subscription;
     private eventSubscriber: Subscription;
+    hasItems: boolean;
 
     constructor(
         private eventManager: JhiEventManager,
@@ -67,15 +66,15 @@ export class OrderEntityDetailComponent implements OnInit, OnDestroy {
         return this.orderEntity.statusId === QueryConstants.orderStatus.LEZARVA;
     }
 
-    onRaktarClick(id: number) {
-        this.orderItemService.query().subscribe((res: HttpResponse<OrderItem[]>) => {
-            this.orderItems = res.body;
-            this.orderItems = this.orderItems.filter((x) => x.orderEntityId === id);
-            this.orderEntityService.placeIntoProducts(this.orderItems, id).subscribe((response: HttpResponse<OrderEntity>) => {
-                this.jhiAlertService.success(
-                    'storageManagementApp.orderEntity.raktarbaFelveve', response.body.id, null);
-                this.eventManager.broadcast({ name: 'orderEntityListModification', content: 'OK'});
-            }, (response: HttpErrorResponse) => this.onError(response.message));
-        }, (res: HttpErrorResponse) => this.onError(res.message));
+    onRaktarClick(orderEntity: OrderEntity) {
+        this.orderEntityService.placeIntoProducts(orderEntity.orderItemList, orderEntity.id).subscribe((response: HttpResponse<OrderEntity>) => {
+            this.jhiAlertService.success(
+                'storageManagementApp.orderEntity.raktarbaFelveve', response.body.id, null);
+            this.eventManager.broadcast({ name: 'orderEntityListModification', content: 'OK'});
+        }, (response: HttpErrorResponse) => this.onError(response.message));
+    }
+
+    hasItemsEmit(value: boolean) {
+        this.hasItems = value;
     }
 }

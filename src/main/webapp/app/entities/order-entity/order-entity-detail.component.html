@@ -19,7 +19,7 @@
         <dt><span jhiTranslate="storageManagementApp.orderEntity.status">Status</span></dt>
         <dd>
             <div *ngIf="orderEntity.statusId">
-                <a [routerLink]="['/status', orderEntity.statusId]">{{orderEntity.statusId}}</a>
+                <a [routerLink]="['/status', orderEntity.statusId]">{{orderEntity.statusName}}</a>
             </div>
         </dd>
     </dl>
@@ -39,11 +39,12 @@
     </button>
 
     <button *ngIf="!isFinalized()" type="submit"
-            (click)="onRaktarClick(orderEntity.id)"
-            class="btn btn-success btn-sm">
+            [disabled]="!hasItems"
+            (click)="onRaktarClick(orderEntity)"
+            class="btn btn-success">
         <span class="fa fa-check"></span>
         <span class="d-none d-md-inline">Raktárba</span>
     </button>
 </div>
 
-<jhi-order-item class="mt-3" [orderEntity]="orderEntity"></jhi-order-item>
+<jhi-order-item class="mt-3" [orderEntity]="orderEntity" (hasItems)="hasItemsEmit($event)"></jhi-order-item>

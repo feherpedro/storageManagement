@@ -1,7 +1,9 @@
 package hu.pte.mik.bpnh16.service.dto;
 
 
+import hu.pte.mik.bpnh16.domain.OrderItem;
 import java.time.LocalDate;
+import java.util.List;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -25,6 +27,8 @@ public class OrderEntityDTO implements Serializable {
     private Long statusId;
 
     private String statusName;
+
+    private List<OrderItem> orderItemList;
 
     public Long getId() {
         return id;
@@ -72,6 +76,14 @@ public class OrderEntityDTO implements Serializable {
 
     public void setStatusName(String statusName) {
         this.statusName = statusName;
+    }
+
+    public List<OrderItem> getOrderItemList() {
+        return orderItemList;
+    }
+
+    public void setOrderItemList(List<OrderItem> orderItemList) {
+        this.orderItemList = orderItemList;
     }
 
     @Override

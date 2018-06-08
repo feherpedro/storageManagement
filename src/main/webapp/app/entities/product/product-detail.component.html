@@ -39,7 +39,7 @@
         <dt><span jhiTranslate="storageManagementApp.product.status">Status</span></dt>
         <dd>
             <div *ngIf="product.statusId">
-                <a [routerLink]="['/status', product.statusId]">{{product.statusId}}</a>
+                <a [routerLink]="['/status', product.statusId]">{{product.statusName}}</a>
             </div>
         </dd>
     </dl>

@@ -13,6 +13,19 @@
                    [(ngModel)]="orderItem.id" readonly />
         </div>
         <div class="form-group">
+            <label class="form-control-label" jhiTranslate="storageManagementApp.orderItem.product" for="field_product">Product</label>
+            <select class="form-control" id="field_product" name="product" [(ngModel)]="orderItem.productId" required>
+                <option [ngValue]="productOption.id" *ngFor="let productOption of products; trackBy: trackProductById">{{productOption.name}}</option>
+            </select>
+            <div [hidden]="!(editForm.controls.productId?.dirty && editForm.controls.productId?.invalid)">
+                <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.productId?.errors?.required" jhiTranslate="entity.validation.required">
+                    This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
             <label class="form-control-label" jhiTranslate="storageManagementApp.orderItem.quantity" for="field_quantity">Quantity</label>
             <input type="number" class="form-control" name="quantity" id="field_quantity"
                 [(ngModel)]="orderItem.quantity" required/>
@@ -38,18 +51,7 @@
                 <option [ngValue]="null"></option>
             </select>
         </div>-->
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="storageManagementApp.orderItem.product" for="field_product">Product</label>
-            <select class="form-control" id="field_product" name="product" [(ngModel)]="orderItem.productId" required>
-                <option [ngValue]="productOption.id" *ngFor="let productOption of products; trackBy: trackProductById">{{productOption.name}}</option>
-            </select>
-            <div [hidden]="!(editForm.controls.productId?.dirty && editForm.controls.productId?.invalid)">
-                <small class="form-text text-danger"
-                       [hidden]="!editForm.controls.productId?.errors?.required" jhiTranslate="entity.validation.required">
-                    This field is required.
-                </small>
-            </div>
-        </div>
+
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="storageManagementApp.orderItem.status" for="field_status">Status</label>
             <select class="form-control" id="field_status" name="status" [(ngModel)]="orderItem.statusId" >

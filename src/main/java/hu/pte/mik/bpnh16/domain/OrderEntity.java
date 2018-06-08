@@ -1,11 +1,15 @@
 package hu.pte.mik.bpnh16.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.util.List;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -39,6 +43,12 @@ public class OrderEntity implements Serializable {
 
     @ManyToOne
     private Status status;
+
+    @Fetch(FetchMode.SELECT)
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "orderEntity")
+    private List<OrderItem> orderItemList;
+//    @JoinColumn(name="order_entity_id")
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -101,6 +111,14 @@ public class OrderEntity implements Serializable {
         this.status = status;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+
+    public List<OrderItem> getOrderItemList() {
+        return orderItemList;
+    }
+
+    public void setOrderItemList(List<OrderItem> orderItemList) {
+        this.orderItemList = orderItemList;
+    }
 
     @Override
     public boolean equals(Object o) {

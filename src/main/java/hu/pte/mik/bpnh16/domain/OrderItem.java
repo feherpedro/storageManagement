@@ -1,5 +1,6 @@
 package hu.pte.mik.bpnh16.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -31,6 +32,7 @@ public class OrderItem implements Serializable {
     private Long quantity;
 
     @ManyToOne
+    @JsonBackReference
     private OrderEntity orderEntity;
 
     @ManyToOne

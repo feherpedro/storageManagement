@@ -17,9 +17,8 @@ import {QueryConstants} from '../../shared/constants/query.constants';
 })
 export class OrderEntityComponent implements OnInit, OnDestroy {
 
-currentAccount: any;
+    currentAccount: any;
     orderEntities: OrderEntity[];
-    orderItems: OrderItem[];
     error: any;
     success: any;
     eventSubscriber: Subscription;
@@ -169,15 +168,11 @@ currentAccount: any;
         return statusId === QueryConstants.orderStatus.LEZARVA;
     }
 
-    onRaktarClick(id: number) {
-        this.orderItemService.query().subscribe((res: HttpResponse<OrderItem[]>) => {
-            this.orderItems = res.body;
-            this.orderItems = this.orderItems.filter((x) => x.orderEntityId === id);
-            this.orderEntityService.placeIntoProducts(this.orderItems, id).subscribe((response: HttpResponse<OrderEntity>) => {
-                this.jhiAlertService.success(
-                    'storageManagementApp.orderEntity.raktarbaFelveve', response.body.id, null);
-                this.eventManager.broadcast({ name: 'orderEntityListModification', content: 'OK'});
-            }, (response: HttpErrorResponse) => this.onError(response.message));
-        }, (res: HttpErrorResponse) => this.onError(res.message));
+    onRaktarClick(orderEntity: OrderEntity) {
+        this.orderEntityService.placeIntoProducts(orderEntity.orderItemList, orderEntity.id).subscribe((response: HttpResponse<OrderEntity>) => {
+            this.jhiAlertService.success(
+                'storageManagementApp.orderEntity.raktarbaFelveve', response.body.id, null);
+            this.eventManager.broadcast({ name: 'orderEntityListModification', content: 'OK'});
+        }, (response: HttpErrorResponse) => this.onError(response.message));
     }
 }
