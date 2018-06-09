@@ -27,13 +27,13 @@
         <dt><span jhiTranslate="storageManagementApp.product.productCategory">Product Category</span></dt>
         <dd>
             <div *ngIf="product.productCategoryId">
-                <a [routerLink]="['/product-category', product.productCategoryId]">{{product.productCategoryId}}</a>
+                <a [routerLink]="['/product-category', product.productCategoryId]">{{product.productCategoryName}}</a>
             </div>
         </dd>
         <dt><span jhiTranslate="storageManagementApp.product.priceCategory">Price Category</span></dt>
         <dd>
             <div *ngIf="product.priceCategoryId">
-                <a [routerLink]="['/price-category', product.priceCategoryId]">{{product.priceCategoryId}}</a>
+                <a [routerLink]="['/price-category', product.priceCategoryId]">{{product.priceCategoryName}}</a>
             </div>
         </dd>
         <dt><span jhiTranslate="storageManagementApp.product.status">Status</span></dt>

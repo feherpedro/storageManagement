@@ -106,6 +106,12 @@ export class OrderItemDialogComponent implements OnInit {
     trackStatusById(index: number, item: Status) {
         return item.id;
     }
+
+    productChanged(productId: number) {
+        setTimeout(() => {
+            this.orderItem.productUnitOfMeasurement = this.products.filter( (product) => product.id === productId)[0].unitOfMeasurement;
+        }, 0);
+    }
 }
 
 @Component({

@@ -6,7 +6,10 @@ export class OrderItem implements BaseEntity {
         public quantity?: number,
         public orderEntityId?: number,
         public productId?: number,
+        public productName?: string,
+        public productUnitOfMeasurement?: string,
         public statusId?: number,
+        public statusName?: string,
     ) {
     }
 }

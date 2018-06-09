@@ -51,12 +51,12 @@
                 <td>{{product.barcode}}</td>
                 <td>
                     <div *ngIf="product.productCategoryId">
-                        <a [routerLink]="['../product-category', product.productCategoryId  ]" >{{product.productCategoryId}}</a>
+                        <a [routerLink]="['../product-category', product.productCategoryId  ]" >{{product.productCategoryName}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="product.priceCategoryId">
-                        <a [routerLink]="['../price-category', product.priceCategoryId  ]" >{{product.priceCategoryId}}</a>
+                        <a [routerLink]="['../price-category', product.priceCategoryId  ]" >{{product.priceCategoryName}}</a>
                     </div>
                 </td>
                 <td>

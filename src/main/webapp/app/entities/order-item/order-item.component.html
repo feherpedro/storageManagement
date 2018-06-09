@@ -29,18 +29,17 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="quantity"><span jhiTranslate="storageManagementApp.orderItem.quantity">Quantity</span> <span class="fa fa-sort"></span></th>
-            <!--<th jhiSortBy="orderEntityId"><span jhiTranslate="storageManagementApp.orderItem.orderEntity">Order Entity</span> <span class="fa fa-sort"></span></th>-->
-            <th jhiSortBy="productId"><span jhiTranslate="storageManagementApp.orderItem.product">Product</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="statusId"><span jhiTranslate="storageManagementApp.orderItem.status">Status</span> <span class="fa fa-sort"></span></th>
+            <th><span jhiTranslate="global.field.id">ID</span></th><!-- jhiSortBy="id"--><!-- <span class="fa fa-sort"></span>-->
+            <th><span jhiTranslate="storageManagementApp.orderItem.product">Product</span></th><!-- jhiSortBy="productId"--><!-- <span class="fa fa-sort"></span>-->
+            <th><span jhiTranslate="storageManagementApp.orderItem.quantity">Quantity</span></th><!-- jhiSortBy="quantity"--><!-- <span class="fa fa-sort"></span>-->
+            <th><span jhiTranslate="storageManagementApp.product.unitOfMeasurement">UnitOfMeasurement</span></th><!-- jhiSortBy="productUnitOfMeasurement"--><!-- <span class="fa fa-sort"></span>-->
+            <th><span jhiTranslate="storageManagementApp.orderItem.status">Status</span></th><!-- jhiSortBy="statusId"--><!-- <span class="fa fa-sort"></span>-->
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let orderItem of orderItems ;trackBy: trackId">
                 <td><a [routerLink]="['../order-item', orderItem.id ]">{{orderItem.id}}</a></td>
-                <td>{{orderItem.quantity}}</td>
                 <!--<td>
                     <div *ngIf="orderItem.orderEntityId">
                         <a [routerLink]="['../order-entity', orderItem.orderEntityId  ]" >{{orderItem.orderEntityId}}</a>
@@ -48,22 +47,24 @@
                 </td>-->
                 <td>
                     <div *ngIf="orderItem.productId">
-                        <a [routerLink]="['../product', orderItem.productId  ]" >{{orderItem.productId}}</a>
+                        <a [routerLink]="['../product', orderItem.productId  ]" >{{orderItem.productName}}</a>
                     </div>
                 </td>
+                <td>{{orderItem.quantity}}</td>
+                <td>{{orderItem.productUnitOfMeasurement}}</td>
                 <td>
                     <div *ngIf="orderItem.statusId">
-                        <a [routerLink]="['../status', orderItem.statusId  ]" >{{orderItem.statusId}}</a>
+                        <a [routerLink]="['../status', orderItem.statusId  ]" >{{orderItem.statusName}}</a>
                     </div>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
+                        <!--<button type="submit"
                                 [routerLink]="['../order-item', orderItem.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
+                        </button>-->
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'order-item/'+ orderItem.id + '/edit'} }]"
                                 replaceUrl="true"

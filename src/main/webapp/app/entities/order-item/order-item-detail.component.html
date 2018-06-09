@@ -4,10 +4,6 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="storageManagementApp.orderItem.quantity">Quantity</span></dt>
-        <dd>
-            <span>{{orderItem.quantity}}</span>
-        </dd>
         <dt><span jhiTranslate="storageManagementApp.orderItem.orderEntity">Order Entity</span></dt>
         <dd>
             <div *ngIf="orderItem.orderEntityId">
@@ -17,13 +13,21 @@
         <dt><span jhiTranslate="storageManagementApp.orderItem.product">Product</span></dt>
         <dd>
             <div *ngIf="orderItem.productId">
-                <a [routerLink]="['/product', orderItem.productId]">{{orderItem.productId}}</a>
+                <a [routerLink]="['/product', orderItem.productId]">{{orderItem.productName}}</a>
             </div>
+        </dd>
+        <dt><span jhiTranslate="storageManagementApp.orderItem.quantity">Quantity</span></dt>
+        <dd>
+            <span>{{orderItem.quantity}}</span>
+        </dd>
+        <dt><span jhiTranslate="storageManagementApp.product.unitOfMeasurement">UnitOfMeasurement</span></dt>
+        <dd>
+            <span>{{orderItem.productUnitOfMeasurement}}</span>
         </dd>
         <dt><span jhiTranslate="storageManagementApp.orderItem.status">Status</span></dt>
         <dd>
             <div *ngIf="orderItem.statusId">
-                <a [routerLink]="['/status', orderItem.statusId]">{{orderItem.statusId}}</a>
+                <a [routerLink]="['/status', orderItem.statusId]">{{orderItem.statusName}}</a>
             </div>
         </dd>
     </dl>

@@ -9,7 +9,9 @@ export class Product implements BaseEntity {
         public unitOfMeasurement?: string,
         public barcode?: string,
         public productCategoryId?: number,
+        public productCategoryName?: string,
         public priceCategoryId?: number,
+        public priceCategoryName?: string,
         public statusId?: number,
         public statusName?: string,
     ) {

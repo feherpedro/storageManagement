@@ -28,7 +28,11 @@ public class ProductDTO implements Serializable {
 
     private Long productCategoryId;
 
+    private String productCategoryName;
+
     private Long priceCategoryId;
+
+    private String priceCategoryName;
 
     private Long statusId;
 
@@ -90,12 +94,28 @@ public class ProductDTO implements Serializable {
         this.productCategoryId = productCategoryId;
     }
 
+    public String getProductCategoryName() {
+        return productCategoryName;
+    }
+
+    public void setProductCategoryName(String productCategoryName) {
+        this.productCategoryName = productCategoryName;
+    }
+
     public Long getPriceCategoryId() {
         return priceCategoryId;
     }
 
     public void setPriceCategoryId(Long priceCategoryId) {
         this.priceCategoryId = priceCategoryId;
+    }
+
+    public String getPriceCategoryName() {
+        return priceCategoryName;
+    }
+
+    public void setPriceCategoryName(String priceCategoryName) {
+        this.priceCategoryName = priceCategoryName;
     }
 
     public Long getStatusId() {

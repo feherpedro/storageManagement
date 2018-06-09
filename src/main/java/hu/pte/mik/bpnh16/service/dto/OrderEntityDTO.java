@@ -28,7 +28,7 @@ public class OrderEntityDTO implements Serializable {
 
     private String statusName;
 
-    private List<OrderItem> orderItemList;
+    private List<OrderItemDTO> orderItemList;
 
     public Long getId() {
         return id;
@@ -78,11 +78,11 @@ public class OrderEntityDTO implements Serializable {
         this.statusName = statusName;
     }
 
-    public List<OrderItem> getOrderItemList() {
+    public List<OrderItemDTO> getOrderItemList() {
         return orderItemList;
     }
 
-    public void setOrderItemList(List<OrderItem> orderItemList) {
+    public void setOrderItemList(List<OrderItemDTO> orderItemList) {
         this.orderItemList = orderItemList;
     }
 

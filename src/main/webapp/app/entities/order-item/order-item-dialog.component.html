@@ -14,7 +14,7 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="storageManagementApp.orderItem.product" for="field_product">Product</label>
-            <select class="form-control" id="field_product" name="product" [(ngModel)]="orderItem.productId" required>
+            <select class="form-control" id="field_product" name="product" [(ngModel)]="orderItem.productId" (change)="productChanged(orderItem.productId)" required>
                 <option [ngValue]="productOption.id" *ngFor="let productOption of products; trackBy: trackProductById">{{productOption.name}}</option>
             </select>
             <div [hidden]="!(editForm.controls.productId?.dirty && editForm.controls.productId?.invalid)">
@@ -39,6 +39,12 @@
                     This field should be a number.
                 </small>
             </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="storageManagementApp.product.unitOfMeasurement" for="field_unitOfMeasurement">Quantity</label>
+            <input type="text" class="form-control" name="unitOfMeasurement" id="field_unitOfMeasurement"
+                   disabled [(ngModel)]="orderItem.productUnitOfMeasurement"/>
         </div>
 
         <!--<div class="form-group">
