@@ -21,7 +21,8 @@
             "paymentDate": "Fizetés dátuma",
             "dueDate": "Raktárba felvétel dátuma",
             "status": "Státusz",
-            "raktarbaFelveve": "A bevételezés sikeresen felvéve a raktárba"
+            "raktarbaFelveve": "A bevételezés sikeresen felvéve a raktárba",
+            "orderItemListLength": "Bevételezendő termékek száma"
         }
     }
 }

@@ -34,6 +34,7 @@
             <th jhiSortBy="paymentDate"><span jhiTranslate="storageManagementApp.orderEntity.paymentDate">Payment Date</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="dueDate"><span jhiTranslate="storageManagementApp.orderEntity.dueDate">Due Date</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="statusId"><span jhiTranslate="storageManagementApp.orderEntity.status">Status</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="orderItemList.length"><span jhiTranslate="storageManagementApp.orderEntity.orderItemListLength">Status</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -48,6 +49,7 @@
                         <a [routerLink]="['../status', orderEntity.statusId  ]" >{{orderEntity.statusName}}</a>
                     </div>
                 </td>
+                <td>{{orderEntity.orderItemList.length}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
