@@ -49,7 +49,7 @@ export class OrderEntityDialogComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-        this.orderEntity.statusId = QueryConstants.orderStatus.FELDOLGOZAS_ALATT;
+        // this.orderEntity.statusId = QueryConstants.orderStatus.FELDOLGOZAS_ALATT;
         if (this.orderEntity.id !== undefined) {
             this.subscribeToSaveResponse(
                 this.orderEntityService.update(this.orderEntity));

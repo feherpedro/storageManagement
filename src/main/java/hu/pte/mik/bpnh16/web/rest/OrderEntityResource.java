@@ -61,6 +61,7 @@ public class OrderEntityResource {
         if (orderEntityDTO.getId() != null) {
             throw new BadRequestAlertException("A new orderEntity cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        orderEntityDTO.setStatusId(Constants.ORDER_STATUS_FELDOLGOZAS_ALATT);
         OrderEntityDTO result = orderEntityService.save(orderEntityDTO);
         return ResponseEntity.created(new URI("/api/order-entities/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
