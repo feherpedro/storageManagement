@@ -8,6 +8,7 @@ export class OrderItem implements BaseEntity {
         public productId?: number,
         public productName?: string,
         public productUnitOfMeasurement?: string,
+        public productBarcode?: string,
         public statusId?: number,
         public statusName?: string,
     ) {

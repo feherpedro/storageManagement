@@ -26,6 +26,8 @@ public class OrderItemDTO implements Serializable {
 
     private String productUnitOfMeasurement;
 
+    private String productBarcode;
+
     private Long statusId;
 
     private String statusName;
@@ -76,6 +78,14 @@ public class OrderItemDTO implements Serializable {
 
     public void setProductUnitOfMeasurement(String productUnitOfMeasurement) {
         this.productUnitOfMeasurement = productUnitOfMeasurement;
+    }
+
+    public String getProductBarcode() {
+        return productBarcode;
+    }
+
+    public void setProductBarcode(String productBarcode) {
+        this.productBarcode = productBarcode;
     }
 
     public Long getStatusId() {
